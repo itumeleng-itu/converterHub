@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Conversion Tool</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="head">
+            <h2>Conversion Tool</h2>
+            <div class="tabs">
+                <button class="tab-button active" onclick="showTab('file')">Download Time</button>
+                <button class="tab-button" onclick="showTab('temp')">Temperature</button>
+                <button class="tab-button" onclick="showTab('sci')">Scientific</button>
+                <button class="tab-button" onclick="showTab('metric')">Metric</button>
+            </div>
+        </div>
+        
+        <!-- File Download Time Calculator -->
+        <div id="file" class="tab-content active">
+            <h3>File Download Time Calculator</h3>
+            <p>Find out how long a download will take</p>
+            
+            <div>
+                <label>File Size:</label>
+                <input type="number" id="file-size" placeholder="Enter size">
+                <select id="type-size">
+                    <option value="kb">KB</option>
+                    <option value="mb">MB</option>
+                    <option value="gb">GB</option>
+                </select>
+            </div>
+            
+            <div>
+                <label>Internet Speed:</label>
+                <input type="number" id="int-speed" placeholder="Enter speed">
+                <select id="size-speed">
+                    <option value="mbps">Mbps</option>
+                    <option value="kbps">Kbps</option>
+                </select>
+            </div>
+            
+            <button onclick="calculateDownloadTime()">Calculate</button>
+            
+            <div class="result" id="file-result"></div>
+        </div>
+        
+        <!-- Temperature Converter -->
+        <div id="temp" class="tab-content">
+            <h3>Temperature Converter</h3>
+            <p>Convert between Celsius and Fahrenheit</p>
+            
+            <div>
+                <label>Temperature:</label>
+                <input type="number" id="temp-val" placeholder="Enter temperature">
+                <select id="temp-type">
+                    <option value="cel">Celsius</option>
+                    <option value="far">Fahrenheit</option>
+                </select>
+            </div>
+            
+            <button onclick="convertTemp()">Convert</button>
+            
+            <div class="result" id="temp-result"></div>
+        </div>
+        
+        <!-- Scientific Notation Converter -->
+        <div id="sci" class="tab-content">
+            <h3>Scientific Notation</h3>
+            <p>Convert numbers to scientific notation</p>
+            
+            <div>
+                <label>Number:</label>
+                <input type="number" id="sci-val" placeholder="Enter number">
+            </div>
+            
+            <button onclick="convertSci()">Convert</button>
+            
+            <div class="result" id="sci-result"></div>
+        </div>
+        
+        <!-- Metric Prefix Converter -->
+        <div id="metric" class="tab-content">
+            <h3>Metric Prefix Converter</h3>
+            <p>Convert between metric prefixes</p>
+            
+            <div>
+                <label>Value:</label>
+                <input type="number" id="metric-val" placeholder="Enter value">
+                
+                <label>From:</label>
+                <select id="metric-from">
+                    <option value="kilo">kilo (k)</option>
+                    <option value="base">base (no prefix)</option>
+                    <option value="milli">milli (m)</option>
+                </select>
+                
+                <label>To:</label>
+                <select id="metric-to">
+                    <option value="base">base (no prefix)</option>
+                    <option value="kilo">kilo (k)</option>
+                    <option value="milli">milli (m)</option>
+                </select>
+            </div>
+            
+            <button onclick="convertMetric()">Convert</button>
+            
+            <div class="result" id="metric-result"></div>
+        </div>
+        
+        <div class="footer">
+            © 2025 Conversion Tool | Simple calculator for everyday use
+        </div>
+    </div>
+
+<script src="/script.js"></script>
+</body>
+</html>
