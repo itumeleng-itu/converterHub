@@ -1,6 +1,6 @@
 body {
-    background: linear-gradient(135deg, #9CF497, #6AC86F);
-    margin: 0;
+    background-color: rgb(106, 149, 185);
+    margin: auto;
     font-family: 'Arial', sans-serif;
     min-height: 100vh;
     color: rgb(3, 74, 19);
