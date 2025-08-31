@@ -4,117 +4,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Conversion Tool</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <div class="head">
-            <h2>Conversion Tool</h2>
-            <div class="tabs">
-                <button class="tab-button active" onclick="showTab('file')">Download Time</button>
-                <button class="tab-button" onclick="showTab('temp')">Temperature</button>
-                <button class="tab-button" onclick="showTab('sci')">Scientific</button>
-                <button class="tab-button" onclick="showTab('metric')">Metric</button>
-            </div>
-        </div>
-        
-        <!-- File Download Time Calculator -->
-        <div id="file" class="tab-content active">
-            <h3>File Download Time Calculator</h3>
-            <p>Find out how long a download will take</p>
-            
-            <div>
-                <label>File Size:</label>
-                <input type="number" id="file-size" placeholder="Enter size">
-                <select id="type-size">
-                    <option value="kb">KB</option>
-                    <option value="mb">MB</option>
-                    <option value="gb">GB</option>
-                </select>
-            </div>
-            
-            <div>
-                <label>Internet Speed:</label>
-                <input type="number" id="int-speed" placeholder="Enter speed">
-                <select id="size-speed">
-                    <option value="mbps">Mbps</option>
-                    <option value="kbps">Kbps</option>
-                </select>
-            </div>
-            
-            <button onclick="calculateDownloadTime()">Calculate</button>
-            
-            <div class="result" id="file-result"></div>
-        </div>
-        
-        <!-- Temperature Converter -->
-        <div id="temp" class="tab-content">
-            <h3>Temperature Converter</h3>
-            <p>Convert between Celsius and Fahrenheit</p>
-            
-            <div>
-                <label>Temperature:</label>
-                <input type="number" id="temp-val" placeholder="Enter temperature">
-                <select id="temp-type">
-                    <option value="cel">Celsius</option>
-                    <option value="far">Fahrenheit</option>
-                </select>
-            </div>
-            
-            <button onclick="convertTemp()">Convert</button>
-            
-            <div class="result" id="temp-result"></div>
-        </div>
-        
-        <!-- Scientific Notation Converter -->
-        <div id="sci" class="tab-content">
-            <h3>Scientific Notation</h3>
-            <p>Convert numbers to scientific notation</p>
-            
-            <div>
-                <label>Number:</label>
-                <input type="number" id="sci-val" placeholder="Enter number">
-            </div>
-            
-            <button onclick="convertSci()">Convert</button>
-            
-            <div class="result" id="sci-result"></div>
-        </div>
-        
-        <!-- Metric Prefix Converter -->
-        <div id="metric" class="tab-content">
-            <h3>Metric Prefix Converter</h3>
-            <p>Convert between metric prefixes</p>
-            
-            <div>
-                <label>Value:</label>
-                <input type="number" id="metric-val" placeholder="Enter value">
-                
-                <label>From:</label>
-                <select id="metric-from">
-                    <option value="kilo">kilo (k)</option>
-                    <option value="base">base (no prefix)</option>
-                    <option value="milli">milli (m)</option>
-                </select>
-                
-                <label>To:</label>
-                <select id="metric-to">
-                    <option value="base">base (no prefix)</option>
-                    <option value="kilo">kilo (k)</option>
-                    <option value="milli">milli (m)</option>
-                </select>
-            </div>
-            
-            <button onclick="convertMetric()">Convert</button>
-            
-            <div class="result" id="metric-result"></div>
-        </div>
-        
-        <div class="footer">
-            © 2025 Conversion Tool | Simple calculator for everyday use
-        </div>
+        <header>
+            <h1>🔄 Converter Hub</h1>
+            <p>Your all-in-one conversion toolkit</p>
+        </header>
+
+        <nav class="tab-container">
+            <button class="tab-button active" onclick="switchTab('file-transfer')">📁 File Transfer</button>
+            <button class="tab-button" onclick="switchTab('temperature')">🌡️ Temperature</button>
+            <button class="tab-button" onclick="switchTab('scientific')">🔬 Scientific</button>
+            <button class="tab-button" onclick="switchTab('metric')">📏 Metric Prefix</button>
+        </nav>
+
+        <main>
+            <!-- File Transfer Calculator -->
+            <section id="file-transfer" class="converter active">
+                <h2>File Transfer Time Calculator</h2>
+                <div class="input-group">
+                    <div class="input-row">
+                        <div class="input-field">
+                            <label for="fileSize">File Size:</label>
+                            <input type="number" id="fileSize" placeholder="Enter file size" min="0" step="0.01">
+                        </div>
+                        <div class="input-field">
+                            <label for="fileSizeUnit">Unit:</label>
+                            <select id="fileSizeUnit">
+                                <option value="B">Bytes (B)</option>
+                                <option value="KB">Kilobytes (KB)</option>
+                                <option value="MB" selected>Megabytes (MB)</option>
+                                <option value="GB">Gigabytes (GB)</option>
+                                <option value="TB">Terabytes (TB)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-field">
+                            <label for="transferSpeed">Transfer Speed:</label>
+                            <input type="number" id="transferSpeed" placeholder="Enter transfer speed" min="0" step="0.01">
+                        </div>
+                        <div class="input-field">
+                            <label for="speedUnit">Unit:</label>
+                            <select id="speedUnit">
+                                <option value="Bps">Bytes/sec (Bps)</option>
+                                <option value="Kbps">Kilobits/sec (Kbps)</option>
+                                <option value="Mbps" selected>Megabits/sec (Mbps)</option>
+                                <option value="Gbps">Gigabits/sec (Gbps)</option>
+                                <option value="KBps">Kilobytes/sec (KBps)</option>
+                                <option value="MBps">Megabytes/sec (MBps)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn" onclick="calculateFileTransfer()">Calculate Transfer Time</button>
+                </div>
+                <div class="result" id="fileTransferResult">
+                    <div class="result-content">
+                        <h3>Transfer Time</h3>
+                        <div class="result-value">Enter values to calculate</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Temperature Converter -->
+            <section id="temperature" class="converter">
+                <h2>Temperature Converter</h2>
+                <div class="temp-converter-grid">
+                    <div class="temp-input-section">
+                        <h3>Celsius</h3>
+                        <div class="input-field">
+                            <label for="celsius">Temperature (°C):</label>
+                            <input type="number" id="celsius" placeholder="Enter Celsius" step="0.01" oninput="convertFromCelsius()">
+                        </div>
+                    </div>
+                    <div class="temp-input-section">
+                        <h3>Fahrenheit</h3>
+                        <div class="input-field">
+                            <label for="fahrenheit">Temperature (°F):</label>
+                            <input type="number" id="fahrenheit" placeholder="Enter Fahrenheit" step="0.01" oninput="convertFromFahrenheit()">
+                        </div>
+                    </div>
+                </div>
+                <div class="result" id="temperatureResult">
+                    <div class="result-content">
+                        <h3>Temperature Conversion</h3>
+                        <div class="result-value">Enter a temperature to convert</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scientific Notation Converter -->
+            <section id="scientific" class="converter">
+                <h2>Scientific Notation Converter</h2>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="normalNumber">Normal Number:</label>
+                        <input type="number" id="normalNumber" placeholder="Enter any number" step="any">
+                    </div>
+                    <button class="btn" onclick="convertToScientific()">Convert to Scientific Notation</button>
+                </div>
+                <div class="result" id="scientificResult">
+                    <div class="result-content">
+                        <h3>Scientific Notation</h3>
+                        <div class="result-value">Enter a number to convert</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Metric Prefix Converter -->
+            <section id="metric" class="converter">
+                <h2>Metric Prefix Converter</h2>
+                <div class="input-group">
+                    <div class="input-row">
+                        <div class="input-field">
+                            <label for="metricValue">Value:</label>
+                            <input type="number" id="metricValue" placeholder="Enter value" step="any">
+                        </div>
+                        <div class="input-field">
+                            <label for="fromUnit">From:</label>
+                            <select id="fromUnit">
+                                <option value="nano">Nano (n)</option>
+                                <option value="micro">Micro (μ)</option>
+                                <option value="milli">Milli (m)</option>
+                                <option value="centi">Centi (c)</option>
+                                <option value="deci">Deci (d)</option>
+                                <option value="base" selected>Base Unit</option>
+                                <option value="deka">Deka (da)</option>
+                                <option value="hecto">Hecto (h)</option>
+                                <option value="kilo">Kilo (k)</option>
+                                <option value="mega">Mega (M)</option>
+                                <option value="giga">Giga (G)</option>
+                                <option value="tera">Tera (T)</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label for="toUnit">To:</label>
+                            <select id="toUnit">
+                                <option value="nano">Nano (n)</option>
+                                <option value="micro">Micro (μ)</option>
+                                <option value="milli">Milli (m)</option>
+                                <option value="centi">Centi (c)</option>
+                                <option value="deci">Deci (d)</option>
+                                <option value="base">Base Unit</option>
+                                <option value="deka">Deka (da)</option>
+                                <option value="hecto">Hecto (h)</option>
+                                <option value="kilo" selected>Kilo (k)</option>
+                                <option value="mega">Mega (M)</option>
+                                <option value="giga">Giga (G)</option>
+                                <option value="tera">Tera (T)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn" onclick="convertMetric()">Convert Units</button>
+                </div>
+                <div class="result" id="metricResult">
+                    <div class="result-content">
+                        <h3>Metric Conversion</h3>
+                        <div class="result-value">Enter values to convert</div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
-<script src="/script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
